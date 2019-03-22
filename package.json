@@ -39,7 +39,7 @@
     "@types/left-pad": "1.2.0",
     "@types/node": "6.0.112",
     "codelyzer": "4.5.0",
-    "jasmine-core": "2.5.2",
+    "jasmine-core": "3.3.0",
     "jasmine-spec-reporter": "3.2.0",
     "karma": "1.4.1",
     "karma-chrome-launcher": "2.1.1",
