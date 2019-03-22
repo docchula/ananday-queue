@@ -10,10 +10,9 @@ import 'firebase/database';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
   registerForm: FormGroup;
 
-  constructor(private afd: AngularFireDatabase) { }
+  constructor(private afd: AngularFireDatabase) {}
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -30,11 +29,18 @@ export class RegisterComponent implements OnInit {
   submit() {
     if (this.registerForm.valid) {
       // Push on to first queue
-      const ref = this.afd.database.ref(`queues/0/queue`).push({value: this.registerForm.value});
-      ref.child('timeStack').push(firebase.database.ServerValue.TIMESTAMP).then((data) => {
-        this.registerForm.reset();
-      });
+      const ref = this.afd.database
+        .ref(`queues/0/queue`)
+        .push({
+          value: this.registerForm.value,
+          registerTime: firebase.database.ServerValue.TIMESTAMP
+        });
+      ref
+        .child('timeStack')
+        .push(firebase.database.ServerValue.TIMESTAMP)
+        .then(data => {
+          this.registerForm.reset();
+        });
     }
   }
-
 }

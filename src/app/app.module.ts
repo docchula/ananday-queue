@@ -12,6 +12,8 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ControllerComponent } from './controller/controller.component';
 import { KeysPipe } from './keys.pipe';
+import { TimePipe } from './time.pipe';
+import { ElapsedPipe } from './elapsed.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { KeysPipe } from './keys.pipe';
     HomeComponent,
     RegisterComponent,
     ControllerComponent,
-    KeysPipe
+    KeysPipe,
+    TimePipe,
+    ElapsedPipe
   ],
   imports: [
     BrowserModule,
