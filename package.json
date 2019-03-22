@@ -21,7 +21,7 @@
     "@angular/platform-browser": "7.2.10",
     "@angular/platform-browser-dynamic": "7.2.10",
     "@angular/router": "7.2.10",
-    "bootstrap-sass": "^3.3.7",
+    "bootstrap-sass": "3.4.1",
     "core-js": "2.5.7",
     "firebase": "5.9.1",
     "font-awesome": "4.7.0",
