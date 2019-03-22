@@ -2,7 +2,7 @@ import { first, switchMap, map } from 'rxjs/operators';
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BoardSetting } from 'app/board-setting';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 import { Queue } from 'app/queue';
 

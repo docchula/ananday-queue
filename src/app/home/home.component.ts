@@ -1,8 +1,8 @@
 import { switchMap, map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
 
