@@ -1,5 +1,23 @@
 {
-  "extends": [
-    "config:base"
-  ]
+  "extends": ["config:base"],
+  "packageRules": [
+    {
+      "packageNames": ["typescript"],
+      "allowedVersions": "< 3.2"
+    },
+    {
+      "packageNames": [
+        "jasmine",
+        "jasmine-core"
+      ],
+      "groupName": "Jasmine packages"
+    }
+  ],
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 0,
+  "rebaseStalePrs": true,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": "after 1pm before 10pm on Friday, Saturday and Sunday"
+  }
 }
