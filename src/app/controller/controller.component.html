@@ -1,47 +1,61 @@
-<ng-template ngFor let-queue [ngForOf]="queues | async" let-i="index" *ngIf="boardSetting | async as _bs">
-  <h2 *ngIf="_bs.canShowAll && i >= _bs.min && i <= _bs.max && queue.queue">{{queue.displayName}}</h2>
-  <table class="table table-responsive" *ngIf="i >= _bs.min && i <= _bs.max && queue.queue">
-    <tr>
-      <th>ชื่อ</th>
-      <th>คำอ่าน</th>
-      <th>โต๊ะ</th>
-      <th>พวงมาลา</th>
-      <div *ngIf="_bs.canShowAll; then showHead"></div>
-      <ng-template #showHead>
-        <th>หมายเหตุ</th>
-        <th>การดำเนินการ</th>
-      </ng-template>
-      <div *ngIf="_bs.canViewRegisterTime; then showTimeHead"></div>
-      <ng-template #showTimeHead>
-        <th>เวลาลงทะเบียน</th>
-      </ng-template>
-    </tr>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <img src="assets/MDCU-logo.png" alt="">
+      <img src="assets/SMCU-logo.png" alt="">
+    </div>
+    <div class="col-md-4">
+      <h1 class="text-center">วันอานันทมหิดล ๒๕๖๑<br>๙ มิถุนายน ๒๕๖๑</h1>
+    </div>
+  </div>
 
-    <div *ngIf="i >= _bs.min && i <= _bs.max && queue.queue; then rows"></div>
-    <ng-template #rows>
-      <ng-template ngFor let-personKey [ngForOf]="queue.queue | keys">
-        <tr>
-          <td>{{queue.queue[personKey].value.name}}</td>
-          <td>{{queue.queue[personKey].value.read}}</td>
-          <td>{{queue.queue[personKey].value.table}}</td>
-          <td>{{queue.queue[personKey].value.wreath}}</td>
-          <div *ngIf="_bs.canShowAll; then showData"></div>
-          <ng-template #showData>
-            <td>{{queue.queue[personKey].value.remarks}}</td>
-            <td>
-              <button class="btn btn-primary" *ngIf="(role | async) === 'controller' && i >= _bs.control.min && i <= _bs.control.max" (click)="next(queue.$key, personKey)">{{queue.next}}</button>
-              <button class="btn btn-danger" *ngIf="(role | async) === 'controller' && i >= _bs.control.min && i - 1 <= _bs.control.max && i !== 0"
-                (click)="back(queue.$key, personKey)">ย้อนกลับ</button>
-            </td>
-          </ng-template>
-          <div *ngIf="_bs.canShowAll; then showTimeData"></div>
-          <ng-template #showTimeData>
-            <td>{{queue.queue[personKey].registerTime | time}}
-              <br>รอมาแล้ว {{queue.queue[personKey].registerTime | elapsed | async}} นาที</td>
-          </ng-template>
-        </tr>
-      </ng-template>
-    </ng-template>
+  <ng-template ngFor let-queue [ngForOf]="queues | async" let-i="index" *ngIf="boardSetting | async as _bs">
+    <h2 *ngIf="_bs.canShowAll && i >= _bs.min && i <= _bs.max && queue.queue">{{queue.displayName}}</h2>
+    <table class="table table-responsive" *ngIf="i >= _bs.min && i <= _bs.max && queue.queue">
+      <tr>
+        <th>ชื่อ</th>
+        <th>คำอ่าน</th>
+        <th>โต๊ะ</th>
+        <th>พวงมาลา</th>
+        <div *ngIf="_bs.canShowAll; then showHead"></div>
+        <ng-template #showHead>
+          <th>หมายเหตุ</th>
+          <th>การดำเนินการ</th>
+        </ng-template>
+        <div *ngIf="_bs.canViewRegisterTime; then showTimeHead"></div>
+        <ng-template #showTimeHead>
+          <th>เวลาลงทะเบียน</th>
+        </ng-template>
+      </tr>
 
-  </table>
-</ng-template>
+      <div *ngIf="i >= _bs.min && i <= _bs.max && queue.queue; then rows"></div>
+      <ng-template #rows>
+        <ng-template ngFor let-personKey [ngForOf]="queue.queue | keys">
+          <tr>
+            <td>{{queue.queue[personKey].value.name}}</td>
+            <td>{{queue.queue[personKey].value.read}}</td>
+            <td>{{queue.queue[personKey].value.table}}</td>
+            <td>{{queue.queue[personKey].value.wreath}}</td>
+            <div *ngIf="_bs.canShowAll; then showData"></div>
+            <ng-template #showData>
+              <td>{{queue.queue[personKey].value.remarks}}</td>
+              <td>
+                <button class="btn btn-primary" *ngIf="(role | async) === 'controller' && i >= _bs.control.min && i <= _bs.control.max" (click)="next(queue.$key, personKey)">{{queue.next}}</button>
+                <button class="btn btn-danger" *ngIf="(role | async) === 'controller' && i >= _bs.control.min && i - 1 <= _bs.control.max && i !== 0"
+                        (click)="back(queue.$key, personKey)">ย้อนกลับ
+                </button>
+              </td>
+            </ng-template>
+            <div *ngIf="_bs.canShowAll; then showTimeData"></div>
+            <ng-template #showTimeData>
+              <td>{{queue.queue[personKey].registerTime | time}}
+                <br>รอมาแล้ว {{queue.queue[personKey].registerTime | elapsed | async}} นาที
+              </td>
+            </ng-template>
+          </tr>
+        </ng-template>
+      </ng-template>
+
+    </table>
+  </ng-template>
+</div>

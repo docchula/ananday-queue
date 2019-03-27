@@ -1,0 +1,19 @@
+#panel-frame {
+  margin: 10vh auto 10vh auto;
+  padding: 1rem;
+  max-width: 500px;
+
+  .panel {
+    margin: auto;
+
+    #imgFrame img {
+      height: 4em;
+    }
+  }
+
+  p.small-text {
+    font-size: 1.2rem;
+    margin: 1.5rem;
+  }
+}
+
