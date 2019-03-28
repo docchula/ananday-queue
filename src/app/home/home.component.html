@@ -30,11 +30,12 @@
       <and-controller [board]="userBoard" [role]="userRole">กำลังโหลด</and-controller>
     </div>
     <div *ngSwitchCase="'viewer'">
+      <h3 class="no-margin-top">เรียกคิว</h3>
       <and-controller [board]="userBoard" [role]="userRole">กำลังโหลด</and-controller>
     </div>
     <div *ngSwitchDefault>ไม่ได้กำหนดสิทธิเข้าถึง กรุณาติดต่อผู้ดูแลระบบ</div>
   </div>
   <p class="text-center small-text">
-    ฝ่ายเทคโนโลยีสารสนเทศ สโมสรนิสิตคณะแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย | <a (click)="logOut()">ออกจากระบบ</a>
+    คณะแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย | <a (click)="logOut()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
   </p>
 </ng-template>

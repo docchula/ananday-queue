@@ -1,6 +1,7 @@
 <ng-template ngFor let-queue [ngForOf]="queues | async" let-i="index" *ngIf="boardSetting | async as _bs">
   <h2 *ngIf="_bs.canShowAll && i >= _bs.min && i <= _bs.max && queue.queue">{{queue.displayName}}</h2>
-  <table class="table table-responsive" *ngIf="i >= _bs.min && i <= _bs.max && queue.queue">
+  <table class="table table-responsive table-striped" *ngIf="i >= _bs.min && i <= _bs.max && queue.queue">
+    <thead>
     <tr>
       <th>ชื่อ</th>
       <th *ngIf="_bs.canShowAll">คำอ่าน</th>
@@ -16,7 +17,8 @@
         <th>เวลาลงทะเบียน</th>
       </ng-template>
     </tr>
-
+    </thead>
+    <tbody>
     <div *ngIf="i >= _bs.min && i <= _bs.max && queue.queue; then rows"></div>
     <ng-template #rows>
       <ng-template ngFor let-personKey [ngForOf]="queue.queue | keys">
@@ -44,5 +46,6 @@
         </tr>
       </ng-template>
     </ng-template>
+    </tbody>
   </table>
 </ng-template>
