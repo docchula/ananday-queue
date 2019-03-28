@@ -1,14 +1,10 @@
 #panel-frame {
-  margin: 10vh auto 10vh auto;
+  margin: 6vh auto 6vh auto;
   padding: 1rem;
   max-width: 500px;
 
   .panel {
     margin: auto;
-
-    #imgFrame img {
-      height: 4em;
-    }
   }
 
   p.small-text {
