@@ -31,17 +31,18 @@
             <td>
               <button class="btn btn-primary" *ngIf="(role | async) === 'controller' && i >= _bs.control.min && i <= _bs.control.max" (click)="next(queue.$key, personKey)">{{queue.next}}</button>
               <button class="btn btn-danger" *ngIf="(role | async) === 'controller' && i >= _bs.control.min && i - 1 <= _bs.control.max && i !== 0"
-                (click)="back(queue.$key, personKey)">ย้อนกลับ</button>
+                      (click)="back(queue.$key, personKey)">ย้อนกลับ
+              </button>
             </td>
           </ng-template>
           <div *ngIf="_bs.canShowAll; then showTimeData"></div>
           <ng-template #showTimeData>
             <td>{{queue.queue[personKey].registerTime | time}}
-              <br>รอมาแล้ว {{queue.queue[personKey].registerTime | elapsed | async}} นาที</td>
+              <br>รอมาแล้ว {{queue.queue[personKey].registerTime | elapsed | async}} นาที
+            </td>
           </ng-template>
         </tr>
       </ng-template>
     </ng-template>
-
   </table>
 </ng-template>

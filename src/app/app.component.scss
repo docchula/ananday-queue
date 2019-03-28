@@ -1,0 +1,21 @@
+nav {
+  font-size: 0.8vmin;
+  height: 9vmin;
+  min-height: 30px;
+  margin-bottom: 10px;
+
+  .container {
+    padding: 0.3em;
+    font-size: 5em;
+
+    img {
+      height: 1.6em;
+    }
+
+    small {
+      font-size: 0.7em;
+      color: gray;
+      margin-left: 1rem;
+    }
+  }
+}
