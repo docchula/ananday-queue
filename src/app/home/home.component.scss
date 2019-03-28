@@ -7,9 +7,15 @@
     margin: auto;
   }
 
-  p.small-text {
-    font-size: 1.2rem;
-    margin: 1.5rem;
+  .btn-purple {
+    color: #fff;
+    background-color: #673ab7;
+    border-color: #512da8;
   }
 }
 
+p.small-text {
+  font-size: 1.3rem;
+  margin: 1.5rem;
+  color: darkgray;
+}

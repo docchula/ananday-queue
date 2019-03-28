@@ -1,40 +1,40 @@
-<div id="panel-frame">
+<div id="panel-frame" *ngIf="!(currentUser | async); else loggedIn">
   <div class="panel panel-default">
     <div class="panel-body">
       <h1 class="text-center">วันอานันทมหิดล ๒๕๖๒</h1>
       <h4 class="text-center">กรุณาเข้าสู่ระบบ</h4>
       <br/>
-      <div *ngIf="!(currentUser | async); else loggedIn">
-        <form novalidate [formGroup]="loginForm" (ngSubmit)="login()">
-          <div class="form-group">
-            <label for="email" class="sr-only">อีเมล</label>
-            <input type="text" id="email" class="form-control" placeholder="อีเมล" formControlName="email" required>
-          </div>
-          <div class="form-group">
-            <label for="password" class="sr-only">รหัสผ่าน</label>
-            <input type="password" id="password" class="form-control" placeholder="รหัสผ่าน" formControlName="password" required>
-          </div>
-          <div class="form-group">
-            <input type="submit" class="btn btn-primary form-control" value="เข้าสู่ระบบ">
-          </div>
-        </form>
-      </div>
-      <ng-template #loggedIn>
-        <div [ngSwitch]="userRole | async">
-          <div *ngSwitchCase="'registrar'">
-            <and-register></and-register>
-          </div>
-          <div *ngSwitchCase="'controller'">
-            <and-controller [board]="userBoard" [role]="userRole"></and-controller>
-          </div>
-          <div *ngSwitchCase="'viewer'">
-            <and-controller [board]="userBoard" [role]="userRole"></and-controller>
-          </div>
-          <div *ngSwitchDefault>No roles defined for this user</div>
+      <form novalidate [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="form-group">
+          <label for="email" class="sr-only">อีเมล</label>
+          <input type="text" id="email" class="form-control" placeholder="อีเมล" formControlName="email" required>
         </div>
-        <button class="btn btn-danger btn-block" (click)="logOut()">ออกจากระบบ</button>
-      </ng-template>
+        <div class="form-group">
+          <label for="password" class="sr-only">รหัสผ่าน</label>
+          <input type="password" id="password" class="form-control" placeholder="รหัสผ่าน" formControlName="password" required>
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btn btn-purple form-control" value="เข้าสู่ระบบ">
+        </div>
+      </form>
     </div>
   </div>
   <p class="text-center small-text">ฝ่ายเทคโนโลยีสารสนเทศ สโมสรนิสิตคณะแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย</p>
 </div>
+<ng-template #loggedIn>
+  <div [ngSwitch]="userRole | async">
+    <div *ngSwitchCase="'registrar'">
+      <and-register>กำลังโหลด</and-register>
+    </div>
+    <div *ngSwitchCase="'controller'">
+      <and-controller [board]="userBoard" [role]="userRole">กำลังโหลด</and-controller>
+    </div>
+    <div *ngSwitchCase="'viewer'">
+      <and-controller [board]="userBoard" [role]="userRole">กำลังโหลด</and-controller>
+    </div>
+    <div *ngSwitchDefault>ไม่ได้กำหนดสิทธิเข้าถึง กรุณาติดต่อผู้ดูแลระบบ</div>
+  </div>
+  <p class="text-center small-text">
+    ฝ่ายเทคโนโลยีสารสนเทศ สโมสรนิสิตคณะแพทยศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย | <a (click)="logOut()">ออกจากระบบ</a>
+  </p>
+</ng-template>
