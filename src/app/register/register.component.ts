@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AngularFireDatabase } from '@angular/fire/database';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AngularFireDatabase} from '@angular/fire/database';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 
@@ -12,12 +12,13 @@ import 'firebase/database';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor(private afd: AngularFireDatabase) {}
+  constructor(private afd: AngularFireDatabase) {
+  }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
       name: new FormControl('', Validators.required),
-      read: new FormControl('', Validators.required),
+      read: new FormControl(''),
       table: new FormControl('', Validators.required),
       wreath: new FormControl('', Validators.required),
       tel: new FormControl(''),
@@ -42,5 +43,9 @@ export class RegisterComponent implements OnInit {
           this.registerForm.reset();
         });
     }
+  }
+
+  read() {
+    responsiveVoice.speak(this.registerForm.value.read || this.registerForm.value.name, 'Thai Female');
   }
 }

@@ -1,13 +1,14 @@
-import { first, switchMap, map } from 'rxjs/operators';
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import { BoardSetting } from 'app/board-setting';
-import { AngularFireDatabase } from '@angular/fire/database';
+import {first, map, switchMap} from 'rxjs/operators';
+import {Component, Input, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {BoardSetting} from 'app/board-setting';
+import {AngularFireDatabase} from '@angular/fire/database';
 
-import { Queue } from 'app/queue';
+import {Queue} from 'app/queue';
 
 import * as firebase from 'firebase/app';
 import 'firebase/database';
+import {Person} from '../person';
 
 @Component({
   selector: 'and-controller',
@@ -20,8 +21,13 @@ export class ControllerComponent implements OnInit {
 
   boardSetting: Observable<BoardSetting>;
   queues: Observable<Queue[]>;
+  previousCalledQueues: {
+    value: Person,
+    codeStack: string[]
+  }[];
 
-  constructor(private afd: AngularFireDatabase) {}
+  constructor(private afd: AngularFireDatabase) {
+  }
 
   ngOnInit() {
     this.boardSetting = this.board.pipe(
@@ -42,6 +48,29 @@ export class ControllerComponent implements OnInit {
           });
         })
       );
+    this.board.pipe(first()).subscribe(boardValue => {
+      console.log('Initializing speech synthesis.');
+      if (boardValue === 'showBoard') {
+        this.previousCalledQueues = [];
+        this.queues.subscribe(allQueues => {
+          const calledQueuesObj = allQueues.find(obj => {
+            return obj.name === 'called';
+          }).queue;
+          if (calledQueuesObj && Object.keys(calledQueuesObj).length >= 1) {
+            const calledQueues = Object.keys(calledQueuesObj).map(i => calledQueuesObj[i]);
+            const diff = calledQueues.filter(item => this.previousCalledQueues.indexOf(item.registerTime) < 0);
+            this.previousCalledQueues = calledQueues.map(q => q.registerTime);
+            diff.forEach(info => {
+              responsiveVoice.speak(
+                'ขอเชิญ. ' + (info.value.read.replace('-', '') || info.value.name) + '. ที่ด้านหลังค่ะ',
+                'Thai Female', {rate: 0.9});
+            });
+          } else {
+            this.previousCalledQueues = [];
+          }
+        });
+      }
+    });
   }
 
   next(queue: number | string, personKey: string) {
@@ -60,7 +89,7 @@ export class ControllerComponent implements OnInit {
           .ref(`queues/${number + 1}/queue`)
           .push().key;
         const keyStack = person.keyStack || {} as any;
-        keyStack[newKey] = personKey
+        keyStack[newKey] = personKey;
         const timeStack = person.timeStack || {} as any;
         timeStack[newKey] = firebase.database.ServerValue.TIMESTAMP;
         this.afd.database.ref(`queues/${number + 1}/queue/${newKey}`).set({

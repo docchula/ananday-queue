@@ -6,13 +6,13 @@
     <div class="form-group">
       <label for="name" class="control-label col-md-3">ชื่อ</label>
       <div class="col-md-9">
-        <input type="text" class="form-control" id="name" formControlName="name">
+        <input type="text" class="form-control" id="name" formControlName="name" placeholder="หลีกเลี่ยงการใช้ไปยาลน้อย">
       </div>
     </div>
     <div class="form-group">
       <label for="read" class="control-label col-md-3">คำอ่าน</label>
       <div class="col-md-9">
-        <input type="text" class="form-control" id="read" formControlName="read">
+        <input type="text" class="form-control" id="read" formControlName="read" placeholder="ใส่คำอ่านเต็ม หรือเว้นว่าง">
       </div>
     </div>
     <div class="form-group">
@@ -46,7 +46,12 @@
       </div>
     </div>
     <div class="form-group">
-      <input type="submit" value="บันทึกข้อมูล" class="form-control btn btn-primary" [disabled]="!(registerForm.valid)">
+      <div class="col-md-2">
+        <button class="btn btn-info" type="button" id="readBtn" (click)="read()" [disabled]="registerForm.value.name.length <= 0">อ่านชื่อ</button>
+      </div>
+      <div class="col-md-10">
+        <input type="submit" value="บันทึกข้อมูล" class="form-control btn btn-primary" [disabled]="!(registerForm.valid)">
+      </div>
     </div>
   </form>
   <!-- TODO: Maybe List of first queue here -->
