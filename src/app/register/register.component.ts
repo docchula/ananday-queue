@@ -46,6 +46,7 @@ export class RegisterComponent implements OnInit {
   }
 
   read() {
+    // @ts-ignore
     responsiveVoice.speak(this.registerForm.value.read || this.registerForm.value.name, 'Thai Female');
   }
 }

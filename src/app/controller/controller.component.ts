@@ -61,6 +61,7 @@ export class ControllerComponent implements OnInit {
             const diff = calledQueues.filter(item => this.previousCalledQueues.indexOf(item.registerTime) < 0);
             this.previousCalledQueues = calledQueues.map(q => q.registerTime);
             diff.forEach(info => {
+              // @ts-ignore
               responsiveVoice.speak(
                 'ขอเชิญ. ' + (info.value.read.replace('-', '') || info.value.name) + '. ที่ด้านหลังค่ะ',
                 'Thai Female', {rate: 0.9});
