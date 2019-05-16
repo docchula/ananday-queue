@@ -15,6 +15,7 @@ import { KeysPipe } from './keys.pipe';
 import { TimePipe } from './time.pipe';
 import { ElapsedPipe } from './elapsed.pipe';
 import { ViewWreathComponent } from './view-wreath/view-wreath.component';
+import { WreathPositionPipe } from './wreath-position.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ViewWreathComponent } from './view-wreath/view-wreath.component';
     KeysPipe,
     TimePipe,
     ElapsedPipe,
-    ViewWreathComponent
+    ViewWreathComponent,
+    WreathPositionPipe
   ],
   imports: [
     BrowserModule,

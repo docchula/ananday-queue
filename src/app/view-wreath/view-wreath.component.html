@@ -2,39 +2,75 @@
   <h1 class="text-center">ตำแหน่งพวงมาลา</h1>
 </div>
 
-<table class="table table-striped">
+<table class="table table-striped" *ngIf="$registered | async as registered">
   <tr *ngFor="let row of ['A','B','C','D']">
     <th>{{row}}</th>
     <td *ngFor="let no of arrayOfSequence(10)">
       {{no}}
-      <a (click)="showReserve(row+no)"><span class="glyphicon glyphicon-minus text-success" aria-hidden="true"></span></a>
+      <a (click)="showReserve(row+no)">
+        <span class="glyphicon glyphicon-check text-danger" aria-hidden="true" *ngIf="registered | wreathPosition:(row+no); else iconNotRegistered"></span>
+        <ng-template #iconNotRegistered>
+          <span class="glyphicon glyphicon-unchecked text-success" aria-hidden="true"></span>
+        </ng-template>
+      </a>
     </td>
   </tr>
 </table>
 
 
-<div class="row" *ngIf="reservePos">
-  <form [formGroup]="reserveForm" class="form-horizontal" novalidate (ngSubmit)="submit()">
-    <div class="form-group">
-      <label for="name" class="control-label col-md-3">ชื่อ</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" id="name" formControlName="name">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="wreath" class="control-label col-md-3">ตำแหน่งพวงมาลา</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" id="wreath" formControlName="wreath" [value]="reservePos">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="remarks" class="control-label col-md-3">หมายเหตุ</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" id="remarks" formControlName="remarks">
-      </div>
-    </div>
-    <div class="form-group">
-      <input type="submit" value="บันทึกข้อมูล" class="form-control btn btn-primary" [disabled]="!(reserveForm.valid)">
-    </div>
-  </form>
+<div class="well" *ngIf="$registered | async | wreathPosition:reservePos as person; else notRegistered">
+  <table>
+    <tr>
+      <th>ชื่อ</th>
+      <td>{{ person.name }}</td>
+    </tr>
+    <tr>
+      <th>พวงมาลา</th>
+      <td>{{ person.wreath }}</td>
+    </tr>
+    <tr *ngIf="person.table">
+      <th>โต๊ะ</th>
+      <td>{{ person.table }}</td>
+    </tr>
+    <tr *ngIf="person.tel">
+      <th>โทรศัพท์</th>
+      <td>{{ person.tel }}</td>
+    </tr>
+  </table>
+  <button class="btn btn-danger" *ngIf="person.status === -1" (click)="deleteReserve(person.id)">
+    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+    ลบ
+  </button>
 </div>
+
+<ng-template #notRegistered>
+  <div class="panel panel-default" *ngIf="reservePos">
+    <div class="panel-body">
+      <form [formGroup]="reserveForm" class="form-horizontal" novalidate (ngSubmit)="submit()">
+        <div class="form-group">
+          <label for="name" class="control-label col-md-3">ชื่อ</label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" id="name" formControlName="name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="wreath" class="control-label col-md-3">ตำแหน่งพวงมาลา</label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" id="wreath" formControlName="wreath">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="remarks" class="control-label col-md-3">หมายเหตุ</label>
+          <div class="col-md-9">
+            <input type="text" class="form-control" id="remarks" formControlName="remarks">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-12">
+            <input type="submit" value="บันทึกข้อมูล" class="form-control btn btn-primary" [disabled]="!(reserveForm.valid)">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
