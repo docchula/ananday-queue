@@ -3,6 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFireDatabase } from '@angular/fire/database';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
+import {Queue} from '../queue';
+import {map, switchMap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'and-register',
@@ -11,6 +14,7 @@ import 'firebase/database';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  $queues: Observable<Queue>;
 
   constructor(private afd: AngularFireDatabase) {}
 
@@ -24,6 +28,9 @@ export class RegisterComponent implements OnInit {
       email: new FormControl(''),
       remarks: new FormControl('')
     });
+    this.$queues = this.afd
+      .object<Queue>('queues/-1')
+      .snapshotChanges();
   }
 
   submit() {

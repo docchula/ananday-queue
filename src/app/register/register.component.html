@@ -1,6 +1,26 @@
 <div class="row">
   <h1 class="text-center">ลงทะเบียน</h1>
 </div>
+
+<table class="table table-striped" *ngIf="$queues | async as queues">
+  <thead>
+  <tr>
+    <th>ชื่อองค์กร</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let queue of queues">
+    <td>{{ queue | json }}</td>
+    <td>
+      <button class="btn btn-danger">
+        ลงทะเบียน
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
 <div class="row">
   <form [formGroup]="registerForm" class="form-horizontal" novalidate (ngSubmit)="submit()">
     <div class="form-group">
@@ -49,5 +69,4 @@
       <input type="submit" value="บันทึกข้อมูล" class="form-control btn btn-primary" [disabled]="!(registerForm.valid)">
     </div>
   </form>
-  <!-- TODO: Maybe List of first queue here -->
 </div>
