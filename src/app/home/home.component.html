@@ -23,6 +23,9 @@
 </div>
 <ng-template #loggedIn>
   <div [ngSwitch]="userRole | async">
+    <div *ngSwitchCase="'view-wreath'">
+      <and-view-wreath>กำลังโหลด</and-view-wreath>
+    </div>
     <div *ngSwitchCase="'registrar'">
       <and-register>กำลังโหลด</and-register>
     </div>

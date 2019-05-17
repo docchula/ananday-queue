@@ -5,15 +5,17 @@
 <table class="table table-striped" *ngIf="$queues | async as queues">
   <thead>
   <tr>
-    <th>ชื่อองค์กร</th>
+    <th>พวงมาลา</th>
+    <th>ชื่อ</th>
     <th></th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let queue of queues">
-    <td>{{ queue | json }}</td>
+  <tr *ngFor="let item of queues.queue | keyvalue">
+    <td>{{ item.value.value.wreath }}</td>
+    <td>{{ item.value.value.name }}</td>
     <td>
-      <button class="btn btn-danger">
+      <button class="btn btn-block btn-info" (click)="showRegister(item)">
         ลงทะเบียน
       </button>
     </td>
@@ -21,52 +23,56 @@
   </tbody>
 </table>
 
-<div class="row">
-  <form [formGroup]="registerForm" class="form-horizontal" novalidate (ngSubmit)="submit()">
-    <div class="form-group">
-      <label for="name" class="control-label col-md-3">ชื่อ</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" id="name" formControlName="name">
+<div class="panel panel-default" *ngIf="reserved">
+  <div class="panel-body">
+    <form [formGroup]="registerForm" class="form-horizontal" novalidate (ngSubmit)="submit()">
+      <div class="form-group">
+        <label for="name" class="control-label col-md-3">ชื่อ</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="name" formControlName="name" placeholder="* หลีกเลี่ยงการย่อ">
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="read" class="control-label col-md-3">คำอ่าน</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" id="read" formControlName="read">
+      <div class="form-group">
+        <label for="read" class="control-label col-md-3">คำอ่าน</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="read" formControlName="read">
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="table" class="control-label col-md-3">โต๊ะ</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" id="table" formControlName="table">
+      <div class="form-group">
+        <label for="table" class="control-label col-md-3">โต๊ะ</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="table" formControlName="table" placeholder="*">
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="table" class="control-label col-md-3">ตำแหน่งพวงมาลา</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" id="table" formControlName="wreath">
+      <div class="form-group">
+        <label for="wreath" class="control-label col-md-3">ตำแหน่งพวงมาลา</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="wreath" formControlName="wreath" placeholder="* (A1-D10) หากมีหลายพวงให้คั่นด้วยคอมม่า (,)">
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="tel" class="control-label col-md-3">โทรศัพท์</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" id="tel" formControlName="tel">
+      <div class="form-group">
+        <label for="tel" class="control-label col-md-3">โทรศัพท์</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="tel" formControlName="tel">
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="email" class="control-label col-md-3">อีเมล</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" id="email" formControlName="email">
+      <div class="form-group">
+        <label for="email" class="control-label col-md-3">อีเมล</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="email" formControlName="email">
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="remarks" class="control-label col-md-3">หมายเหตุ</label>
-      <div class="col-md-9">
-        <input type="text" class="form-control" id="remarks" formControlName="remarks">
+      <div class="form-group">
+        <label for="remarks" class="control-label col-md-3">หมายเหตุ</label>
+        <div class="col-md-9">
+          <input type="text" class="form-control" id="remarks" formControlName="remarks">
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <input type="submit" value="บันทึกข้อมูล" class="form-control btn btn-primary" [disabled]="!(registerForm.valid)">
-    </div>
-  </form>
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <input type="submit" value="บันทึกข้อมูล" class="form-control btn btn-primary" [disabled]="!(registerForm.valid)">
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
