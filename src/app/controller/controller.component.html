@@ -1,4 +1,4 @@
-<ng-template ngFor let-queue [ngForOf]="queues | async" let-i="index" *ngIf="boardSetting | async as _bs">
+<ng-template ngFor let-queue [ngForOf]="queues | async" let-i="index - 1" *ngIf="boardSetting | async as _bs">
   <h2 *ngIf="_bs.canShowAll && i >= _bs.min && i <= _bs.max && queue.queue">{{queue.displayName}}</h2>
   <table class="table table-responsive table-striped" *ngIf="i >= _bs.min && i <= _bs.max && queue.queue">
     <thead>
