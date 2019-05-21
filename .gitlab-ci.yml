@@ -1,0 +1,28 @@
+build:
+  image: node:10-alpine
+  stage: build
+  script:
+    - npm ci
+    - npx ng build --prod
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 24 hours
+  cache:
+    key: build
+    paths:
+      - $HOME/.npm/
+
+deploy:
+  stage: deploy
+  image: sarunint/firebase-tools:latest
+  only:
+    - master
+  dependencies:
+    - build
+  script:
+    - firebase deploy --only hosting --token "$FIREBASE_TOKEN"
+
+stages:
+  - build
+  - deploy
