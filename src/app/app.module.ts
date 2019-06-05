@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -31,7 +30,6 @@ import { WreathPositionPipe } from './wreath-position.pipe';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
     AppRoutingModule,
     AngularFireModule.initializeApp({
       apiKey: 'AIzaSyBaH55xro5s2g2FGzop9HKZB-S_2jPusi8',
