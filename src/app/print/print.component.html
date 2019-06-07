@@ -1,0 +1,18 @@
+<!-- for Plan B: Manual/Paper method -->
+<div class="row">
+  <h1 class="text-center">ลงทะเบียนแล้ว</h1>
+</div>
+
+<div *ngIf="$queues | async as queues">
+  <div class="panel panel-default" *ngFor="let item of queues.queue | keyvalue">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{ item.value.value.name }}</h3>
+    </div>
+    <div class="panel-body">
+      <u>คำอ่าน</u> {{ item.value.value.read }}<br />
+      <u>พวงมาลา</u> {{ item.value.value.wreath }} | <u>โต๊ะ</u> {{ item.value.value.table }}<br />
+      <u>โทรศัพท์</u> {{ item.value.value.tel || '-' }} | <u>อีเมล</u> {{ item.value.value.email || '-' }}
+      <span *ngIf="item.value.value.remarks"><br /><u>หมายเหตุ</u> {{ item.value.value.remarks }}</span>
+    </div>
+  </div>
+</div>
