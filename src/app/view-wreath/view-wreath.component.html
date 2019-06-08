@@ -5,7 +5,7 @@
 <table class="table table-striped" *ngIf="$registered | async as registered">
   <tr *ngFor="let row of ['A','B','C','D']">
     <th>{{row}}</th>
-    <td *ngFor="let no of arrayOfSequence(10)">
+    <td *ngFor="let no of arrayOfSequence(21)">
       {{no}}
       <a (click)="showReserve(row+no)">
         <span class="glyphicon glyphicon-check text-danger" aria-hidden="true" *ngIf="registered | wreathPosition:(row+no); else iconNotRegistered"></span>
