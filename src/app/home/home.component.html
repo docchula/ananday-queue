@@ -29,6 +29,9 @@
     <div *ngSwitchCase="'registrar'">
       <and-register>กำลังโหลด</and-register>
     </div>
+    <div *ngSwitchCase="'printer'">
+      <and-print>กำลังโหลด</and-print>
+    </div>
     <div *ngSwitchCase="'controller'">
       <and-controller [board]="userBoard" [role]="userRole">กำลังโหลด</and-controller>
     </div>
