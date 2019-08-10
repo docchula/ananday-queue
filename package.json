@@ -34,7 +34,7 @@
     "@angular-devkit/build-angular": "0.802.1",
     "@angular/cli": "8.2.1",
     "@angular/compiler-cli": "8.2.0",
-    "@types/jasmine": "3.3.16",
+    "@types/jasmine": "3.4.0",
     "@types/left-pad": "1.2.0",
     "@types/node": "12.6.9",
     "codelyzer": "5.1.0",
