@@ -7,7 +7,6 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Queue } from 'app/queue';
 
 import * as firebase from 'firebase/app';
-import 'firebase/database';
 
 @Component({
   selector: 'and-controller',

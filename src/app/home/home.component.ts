@@ -69,8 +69,7 @@ export class HomeComponent implements OnInit {
 
   login() {
     if (this.loginForm.valid) {
-      this.afa.auth
-        .signInWithEmailAndPassword(
+      this.afa.signInWithEmailAndPassword(
           this.loginForm.value['email'],
           this.loginForm.value['password']
         )
@@ -86,6 +85,6 @@ export class HomeComponent implements OnInit {
   }
 
   logOut() {
-    this.afa.auth.signOut();
+    this.afa.signOut();
   }
 }

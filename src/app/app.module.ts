@@ -17,6 +17,8 @@ import { ViewWreathComponent } from './view-wreath/view-wreath.component';
 import { WreathPositionPipe } from './wreath-position.pipe';
 import { PrintComponent } from './print/print.component';
 
+import 'firebase/database';
+
 @NgModule({
   declarations: [
     AppComponent,
