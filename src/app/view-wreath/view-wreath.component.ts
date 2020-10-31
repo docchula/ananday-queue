@@ -5,7 +5,7 @@ import {AngularFireDatabase} from '@angular/fire/database';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Person} from '../person';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'and-view-wreath',

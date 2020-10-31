@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'and-home',
