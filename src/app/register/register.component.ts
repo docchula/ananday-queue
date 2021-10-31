@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {AngularFireDatabase} from '@angular/fire/database';
-import firebase from 'firebase/app';
+import {AngularFireDatabase} from '@angular/fire/compat/database';
+import firebase from 'firebase/compat/app';
 import {Queue} from '../queue';
 import {Observable} from 'rxjs';
 import {KeyValue} from '@angular/common';

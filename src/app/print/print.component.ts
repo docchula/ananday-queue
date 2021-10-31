@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Queue} from '../queue';
 import {Observable} from 'rxjs';
-import {AngularFireDatabase} from '@angular/fire/database';
+import {AngularFireDatabase} from '@angular/fire/compat/database';
 
 @Component({
   selector: 'and-print',
