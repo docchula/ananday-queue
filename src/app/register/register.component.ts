@@ -14,7 +14,8 @@ import {KeyValue} from '@angular/common';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   $queues: Observable<Queue>;
-  reserved: KeyValue<string, any>;
+  reserved: Queue['queue'][0];
+  reservedIndex: number
 
   constructor(private afd: AngularFireDatabase) {
   }
@@ -34,9 +35,10 @@ export class RegisterComponent implements OnInit {
       .valueChanges();
   }
 
-  showRegister(item: KeyValue<string, any>) {
+  showRegister(item: Queue['queue'][0], index: number) {
     this.reserved = item;
-    this.registerForm.patchValue(item.value.value);
+    this.reservedIndex = index;
+    this.registerForm.patchValue(item.value);
   }
 
   submit() {
@@ -50,7 +52,7 @@ export class RegisterComponent implements OnInit {
       ref.set({
         value: this.registerForm.value,
         registerTime: firebase.database.ServerValue.TIMESTAMP,
-        keyStack: {[newKey]: this.reserved.key}
+        keyStack: {[newKey]: this.reservedIndex}
       });
       ref
         .child('timeStack')
@@ -60,7 +62,7 @@ export class RegisterComponent implements OnInit {
         });
 
       // Remove from queue -1
-      this.afd.database.ref(`queues/-1/queue/${this.reserved.key}`).remove();
+      this.afd.database.ref(`queues/-1/queue/${this.reservedIndex}`).remove();
 
       this.reserved = null;
     }

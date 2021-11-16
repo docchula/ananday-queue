@@ -5,5 +5,6 @@ export interface BoardSetting {
   control: {
     max: number,
     min: number
-  }
+  };
+  canViewRegisterTime: boolean;
 }

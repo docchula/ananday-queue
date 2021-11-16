@@ -6,6 +6,8 @@ export interface Queue {
   next: string;
   queue?: {
     value: Person,
-    codeStack: string[]
+    codeStack: string[],
+    registerTime: any
   }[];
+  $key: string;
 }
