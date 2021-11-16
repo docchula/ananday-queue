@@ -5,9 +5,6 @@
     "baseUrl": "",
     "types": []
   },
-  "angularCompilerOptions": {
-    "strictTemplates": true
-  },
   "files": [
     "main.ts",
     "polyfills.ts"
