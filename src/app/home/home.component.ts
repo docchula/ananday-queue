@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   currentUser: Observable<firebase.User>;
   userRole: Observable<string>;
   userBoard: Observable<string>;
+  isNotLoggedIn: Observable<boolean>
 
   constructor(private afa: AngularFireAuth, private afd: AngularFireDatabase) {}
 
@@ -45,6 +46,7 @@ export class HomeComponent implements OnInit {
         }
       })
     );
+    this.isNotLoggedIn = this.currentUser.pipe(map(v => !v));
     this.userBoard = this.currentUser.pipe(
       switchMap((user: firebase.User, index: number) => {
         if (user) {

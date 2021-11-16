@@ -1,4 +1,4 @@
-<div id="panel-frame" *ngIf="!(currentUser | async); else loggedIn">
+<div id="panel-frame" *ngIf="(isNotLoggedIn | async); else loggedIn">
   <div class="panel panel-default">
     <div class="panel-body">
       <h1 class="text-center">วันอานันทมหิดล ๒๕๖๒</h1>
