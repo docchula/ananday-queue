@@ -28,7 +28,7 @@
     "rxfire": "6.0.3",
     "rxjs": "7.5.5",
     "tslib": "2.5.0",
-    "zone.js": "0.11.5"
+    "zone.js": "0.13.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.5",
