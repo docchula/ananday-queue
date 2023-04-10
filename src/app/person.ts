@@ -1,7 +1,7 @@
 export interface Person {
   name: string;
-  read: string;
-  table: string;
+  read?: string;
+  table?: string;
   wreath: string;
   tel?: string;
   email?: string;

@@ -4,7 +4,6 @@ import {AngularFireDatabase} from '@angular/fire/compat/database';
 import firebase from 'firebase/compat/app';
 import {Queue} from '../queue';
 import {Observable} from 'rxjs';
-import {KeyValue} from '@angular/common';
 
 @Component({
   selector: 'and-register',
@@ -15,7 +14,7 @@ export class RegisterComponent implements OnInit {
   registerForm: UntypedFormGroup;
   $queues: Observable<Queue>;
   reserved: Queue['queue'][0];
-  reservedIndex: number
+  reservedIndex: string
 
   constructor(private afd: AngularFireDatabase) {
   }
@@ -35,7 +34,7 @@ export class RegisterComponent implements OnInit {
       .valueChanges();
   }
 
-  showRegister(item: Queue['queue'][0], index: number) {
+  showRegister(item, index: string) {
     this.reserved = item;
     this.reservedIndex = index;
     this.registerForm.patchValue(item.value);
@@ -57,7 +56,7 @@ export class RegisterComponent implements OnInit {
       ref
         .child('timeStack')
         .push(firebase.database.ServerValue.TIMESTAMP)
-        .then(data => {
+        .then(() => {
           this.registerForm.reset();
         });
 

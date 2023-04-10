@@ -5,9 +5,11 @@ export interface Queue {
   displayName: string;
   next: string;
   queue?: {
-    value: Person,
-    codeStack: string[],
-    registerTime: any
-  }[];
+    [key: string]: {
+      value: Person,
+      timeStack: string[],
+      registerTime: any
+    }
+  };
   $key: string;
 }
