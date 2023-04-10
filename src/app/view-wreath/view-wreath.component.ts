@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import {Queue} from '../queue';
 import {AngularFireDatabase} from '@angular/fire/compat/database';
 import {map} from 'rxjs/operators';
@@ -13,7 +13,7 @@ import firebase from 'firebase/compat/app';
   styleUrls: ['./view-wreath.component.scss']
 })
 export class ViewWreathComponent implements OnInit {
-  reserveForm: FormGroup;
+  reserveForm: UntypedFormGroup;
   reservePos: string;
   $registered: Observable<(Person & {status: number; id: string})[]>;
 
@@ -21,10 +21,10 @@ export class ViewWreathComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.reserveForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      wreath: new FormControl('', Validators.required),
-      remarks: new FormControl('')
+    this.reserveForm = new UntypedFormGroup({
+      name: new UntypedFormControl('', Validators.required),
+      wreath: new UntypedFormControl('', Validators.required),
+      remarks: new UntypedFormControl('')
     });
     this.$registered = this.afd
       .list<Queue>('queues')

@@ -1,6 +1,6 @@
 import { switchMap, map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Observable } from 'rxjs';
@@ -12,7 +12,7 @@ import firebase from 'firebase/compat/app';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
   currentUser: Observable<firebase.User>;
   userRole: Observable<string>;
   userBoard: Observable<string>;
@@ -21,9 +21,9 @@ export class HomeComponent implements OnInit {
   constructor(private afa: AngularFireAuth, private afd: AngularFireDatabase) {}
 
   ngOnInit() {
-    this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required)
+    this.loginForm = new UntypedFormGroup({
+      email: new UntypedFormControl('', [Validators.required, Validators.email]),
+      password: new UntypedFormControl('', Validators.required)
     });
     this.currentUser = this.afa.authState;
     this.userRole = this.currentUser.pipe(

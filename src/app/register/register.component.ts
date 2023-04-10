@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import {AngularFireDatabase} from '@angular/fire/compat/database';
 import firebase from 'firebase/compat/app';
 import {Queue} from '../queue';
@@ -12,7 +12,7 @@ import {KeyValue} from '@angular/common';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup;
+  registerForm: UntypedFormGroup;
   $queues: Observable<Queue>;
   reserved: Queue['queue'][0];
   reservedIndex: number
@@ -21,14 +21,14 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.registerForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      read: new FormControl(''),
-      table: new FormControl('', Validators.required),
-      wreath: new FormControl('', Validators.required),
-      tel: new FormControl(''),
-      email: new FormControl(''),
-      remarks: new FormControl('')
+    this.registerForm = new UntypedFormGroup({
+      name: new UntypedFormControl('', Validators.required),
+      read: new UntypedFormControl(''),
+      table: new UntypedFormControl('', Validators.required),
+      wreath: new UntypedFormControl('', Validators.required),
+      tel: new UntypedFormControl(''),
+      email: new UntypedFormControl(''),
+      remarks: new UntypedFormControl('')
     });
     this.$queues = this.afd
       .object<Queue>('queues/-1')
