@@ -15,13 +15,13 @@ build:
 
 deploy:
   stage: deploy
-  image: sarunint/firebase-tools:latest
+  image: node:18-alpine
   only:
     - master
   dependencies:
     - build
   script:
-    - firebase deploy --only hosting --token "$FIREBASE_TOKEN"
+    - GOOGLE_APPLICATION_CREDENTIALS="$GOOGLE_APPLICATION_CREDENTIALS" npx ng deploy
 
 stages:
   - build
