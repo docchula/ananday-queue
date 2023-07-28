@@ -13,17 +13,17 @@ build:
     paths:
       - $HOME/.npm/
 
-deploy:
-  stage: deploy
-  image: node:18-alpine
-  only:
-    - master
-  dependencies:
-    - build
-  script:
-    - npm ci
-    - GOOGLE_APPLICATION_CREDENTIALS="$GOOGLE_APPLICATION_CREDENTIALS" npx ng deploy
+# deploy:
+#   stage: deploy
+#   image: node:18-alpine
+#   only:
+#     - master
+#   dependencies:
+#     - build
+#   script:
+#     - npm ci
+#     - GOOGLE_APPLICATION_CREDENTIALS="$GOOGLE_APPLICATION_CREDENTIALS" npx ng deploy
 
 stages:
   - build
-  - deploy
+#   - deploy
