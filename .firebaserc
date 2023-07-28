@@ -1,4 +1,13 @@
 {
+  "targets": {
+    "ananday-queue": {
+      "hosting": {
+        "ananday": [
+          "ananday-queue"
+        ]
+      }
+    }
+  },
   "projects": {
     "default": "ananday-queue"
   }

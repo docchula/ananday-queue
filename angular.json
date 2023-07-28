@@ -105,21 +105,13 @@
               "src/**/*.html"
             ]
           }
-        }
-      }
-    },
-    "ananday-e2e": {
-      "root": "",
-      "sourceRoot": "e2e",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
           "options": {
-            "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "ananday:serve"
-          },
-          "configurations": {}
+            "version": 2,
+            "browserTarget": "ananday:build:production"
+          }
         }
       }
     }
